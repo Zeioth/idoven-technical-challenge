@@ -17,7 +17,7 @@ Create and enable a virtualenv and install the dependencies with
 ```sh
 python -m venv venv
 source venv/bin/activate
-pip install fastapi python-multipart asyncpg databases psycopg2 asyncpg sqlalchemy python-passlib jose pytest ptw alembic
+pip install uvicorn fastapi python-multipart asyncpg databases psycopg2 asyncpg sqlalchemy python-passlib jose pytest ptw alembic
 ```
 
 Start the database
