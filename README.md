@@ -70,12 +70,12 @@ docker exec -it <instance-id> psql -U apiuser -d idovendb
   - /test_users_endpoints.py
 ```
 
-## Capture of requisites
-[See here](https://github.com/Zeioth/idoven-technical-challenge/blob/main/requisites.md)
+## Capture of requirements
+[See here](https://github.com/Zeioth/idoven-technical-challenge/blob/main/requirements.md)
 
 ## Development roadmap
 
-* **Friday**: Capture of requisites
+* **Friday**: Capture of requirements
 * **Monday**: MVP
 * **Tuesday**: Missing features
 * **Wednesday**: Tests
