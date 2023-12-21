@@ -105,4 +105,4 @@ microservice in the future, this would be a good idea.
 * Before leaving staging, we must modify the tests to self-clean data.
 * According to the requirements, admins can create users.
   But the requirements do not specify the fact a admin shouldn't
-  probably be able to create other admins.
+  probably be able to create users with the role 'admin'.
