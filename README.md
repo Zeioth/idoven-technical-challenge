@@ -6,13 +6,13 @@ as part of the technical interview for the startup Idoven.
 ![screenshot_2023-12-21_18-44-05_296796801](https://github.com/Zeioth/idoven-technical-challenge/assets/3357792/ca0ca91d-f3f3-4163-883d-ae9bf441070c)
 
 ## How to use
-Before starting you might need a couple of system dependencies
+Install the pre-requirements
 
 ```
 sudo apt install docker virtualenv
 ```
 
-Now we can create and enable a virtualenv to install the dependencies with
+Create and enable a virtualenv and install the dependencies with
 
 ```sh
 python -m venv venv
@@ -28,13 +28,14 @@ docker run -e POSTGRES_DB=idovendb -e POSTGRES_USER=apiuser -e POSTGRES_PASSWORD
 
 Start the FastAPI server
 ```
+cd ./app
 uvicorn main:app --reload
 ```
 
 Once the FastAPI server is running you can run the tests
 
 ```
-cd ./tests/
+cd ./tests
 ptw
 ```
 
