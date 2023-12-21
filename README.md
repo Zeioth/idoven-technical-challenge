@@ -15,8 +15,9 @@ sudo apt install docker virtualenv
 Create and enable a virtualenv and install the dependencies with
 
 ```sh
+cd ~/
 python -m venv venv
-source ./venv/bin/activate
+source ~/venv/bin/activate
 pip install uvicorn fastapi python-multipart asyncpg databases psycopg2 asyncpg sqlalchemy passlib jose pytest ptw alembic
 ```
 
@@ -37,6 +38,10 @@ Once the FastAPI server is running you can run the tests
 ```
 cd ./tests
 ptw
+```
+Once you end developing you can stop the virtualenv with
+```sh
+deactivate
 ```
 
 ### Extra commands
