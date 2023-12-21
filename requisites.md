@@ -1,4 +1,4 @@
-These are the initial requisites I extracted from the assignment.
+These are the initial requirements I extracted from [here](https://github.com/idoven/backend-challenge/tree/main).
 
 **PRE-REQUISITES**
 ------------------
