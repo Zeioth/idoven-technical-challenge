@@ -3,6 +3,8 @@ This code has been generated from
 [these](https://github.com/idoven/backend-challenge/tree/main) requisites
 as part of the technical interview for the startup Idoven.
 
+![screenshot_2023-12-21_18-44-05_296796801](https://github.com/Zeioth/idoven-technical-challenge/assets/3357792/ca0ca91d-f3f3-4163-883d-ae9bf441070c)
+
 ## How to use
 Before starting you might need a couple of system dependencies
 
