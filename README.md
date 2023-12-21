@@ -68,7 +68,7 @@ docker exec -it <instance-id> psql -U apiuser -d idovendb
 ```
 
 ## Capture of requisites
-See here
+[See here](https://github.com/Zeioth/idoven-technical-challenge/blob/main/requisites.md)
 
 ## Development roadmap
 
