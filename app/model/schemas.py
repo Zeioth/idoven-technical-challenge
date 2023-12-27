@@ -20,6 +20,13 @@ class ECGModel(BaseModel):
         from_attributes = True
 
 
+class ECGZeroCrossingsModel(ECGModel):
+    zerocrossings: int
+
+    class Config:
+        from_attributes = True
+
+
 class UserModel(BaseModel):
     username: str
     password: str
