@@ -1,6 +1,9 @@
 # Controller for the ecg model
 
 class EcgService:
+    """
+    Service with controller functions for the ecg model.
+    """
     def __init__(self, ecgs_service=None):
         self.ecgs_service = ecgs_service
 

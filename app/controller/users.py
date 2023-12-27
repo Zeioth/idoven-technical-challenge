@@ -12,6 +12,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
 class UserService:
+    """
+    Service with controller functions for the user model.
+    """
     def __init__(self, db_service):
         self.db_service = db_service
 

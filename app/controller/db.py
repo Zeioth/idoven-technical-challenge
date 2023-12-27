@@ -10,6 +10,9 @@ from model.models import Base, UserDBModel
 
 
 class DBService:
+    """
+    Service to manage the database.
+    """
     _instance = None
 
     def __new__(cls):
