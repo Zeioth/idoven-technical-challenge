@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from models.schemas import UserModel
 from models.models import UserDBModel
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from utils.users import get_current_user
 from utils.db import get_db
@@ -36,7 +36,7 @@ async def get_login_token(
     if not user or not user.password or not bcrypt.verify(
             password, user.password):
         raise HTTPException(
-            status_code=401,
+            status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
@@ -57,13 +57,15 @@ async def create_user(
     Create a new user. Only users with the "admin" role can create new users.
     """
     if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Permission denied")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Permission denied")
 
     # Check if the user already exists
     existing_user = db.query(UserDBModel).filter(
         UserDBModel.username == user.username).first()
     if existing_user:
-        raise HTTPException(status_code=400, detail="User already exists")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="User already exists")
 
     # Create a new user
     hashed_password = bcrypt.hash(user.password)
@@ -90,14 +92,16 @@ async def delete_user(
     Delete a user. Only users with the "admin" role can delete users.
     """
     if current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Permission denied")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Permission denied")
 
     # Check if the user exists
     user_to_delete = db.query(UserDBModel).filter(
         UserDBModel.username == username).first()
 
     if not user_to_delete:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 
     # Delete the user
     db.delete(user_to_delete)
