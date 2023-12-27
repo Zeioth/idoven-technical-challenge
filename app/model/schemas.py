@@ -1,4 +1,4 @@
-# Pydantic schemas for FastAPI
+# Pydantic schemas
 
 from pydantic import BaseModel
 from typing import List, Optional

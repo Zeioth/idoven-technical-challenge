@@ -1,13 +1,13 @@
-# API ENDPOINTS - Electrocardiograms
+# View for the ecgs controller
 
 from fastapi import FastAPI, HTTPException, Depends, APIRouter, status
 from sqlalchemy.orm import Session
 
-from models.schemas import ECGModel
-from models.models import ECGDBModel, LeadDBModel, UserDBModel
+from model.schemas import ECGModel
+from model.models import ECGDBModel, LeadDBModel, UserDBModel
 
-from utils.users import get_current_user
-from utils.db import get_db
+from controller.users import user_service
+from controller.db import db_service
 
 
 app = FastAPI()
@@ -17,8 +17,8 @@ router = APIRouter()
 @router.post("/post-ecg")
 async def post_ecg(
     ecg: ECGModel,
-    db: Session = Depends(get_db),
-    current_user: UserDBModel = Depends(get_current_user),
+    db: Session = Depends(db_service.get_db),
+    current_user: UserDBModel = Depends(user_service.get_current_user),
 ):
     """
     Writes an electrocardiogram into the database.
@@ -67,8 +67,8 @@ async def post_ecg(
 @router.get("/get-ecg/{ecg_id}", response_model=ECGModel)
 async def get_ecg(
     ecg_id: str,
-    db: Session = Depends(get_db),
-    current_user: UserDBModel = Depends(get_current_user),
+    db: Session = Depends(db_service.get_db),
+    current_user: UserDBModel = Depends(user_service.get_current_user),
 ):
     """
     Reads an electrocardiogram from the database.

@@ -1,9 +1,7 @@
-
 from fastapi import FastAPI
-from utils.db import connect_db, disconnect_db
-from utils.db import create_tables, create_user
-from endpoints.ecgs import router as ecgs_router
-from endpoints.users import router as users_router
+from controller.db import db_service
+from view.ecgs import router as ecgs_router
+from view.users import router as users_router
 
 app = FastAPI()
 
@@ -17,17 +15,17 @@ app = FastAPI()
 @app.on_event("startup")
 async def startup_event():
     """Connects to the database and creates the initial data."""
-    await connect_db()
-    await create_tables()
-    await create_user("admin", "admin", "admin")
-    await create_user("user", "user", "user")
-    await create_user("user2", "user2", "user")
+    await db_service.connect_db()
+    await db_service.create_tables()
+    await db_service.create_user("admin", "admin", "admin")
+    await db_service.create_user("user", "user", "user")
+    await db_service.create_user("user2", "user2", "user")
 
 
 @app.on_event("shutdown")
 async def shutdown_event():
     """Disconnects from the database before the server stops."""
-    await disconnect_db()
+    await db_service.disconnect_db()
 
 
 # EXPOSE ENDPOINTS
