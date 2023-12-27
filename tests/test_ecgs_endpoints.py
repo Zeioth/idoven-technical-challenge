@@ -77,18 +77,23 @@ def test_get_ecg():
     """
 
     # ACT - Try to get a ecg posted by user1 with the token of user2
-    response_user1 = requests.post(f"{c.BASE_URL}/post-ecg",
-                                   json=ECG_DATA_1, headers=HEADERS_USER_1)
-    ecg_id_user1 = response_user1.json().get("ecg_id")
+    response_user1_post = requests.post(
+        f"{c.BASE_URL}/post-ecg",
+        json=ECG_DATA_1, headers=HEADERS_USER_1)
+    ecg_id_user1 = response_user1_post.json().get("ecg_id")
 
-    response_user2 = requests.get(
+    response_user1_get = requests.get(
+        f"{c.BASE_URL}/get-ecg/{ecg_id_user1}", headers=HEADERS_USER_1)
+    response_user2_get = requests.get(
         f"{c.BASE_URL}/get-ecg/{ecg_id_user1}", headers=HEADERS_USER_2)
 
     # Assert
-    assert response_user1.status_code == status.HTTP_200_OK, \
-        f"Failed to create ECG for user 1: {response_user1.content}"
-    assert response_user2.status_code == status.HTTP_403_FORBIDDEN, \
-        f"Unexpected status code: {response_user2.status_code}. User 2 should not have permission to access ECG created by user 1"
+    assert response_user1_get.status_code == status.HTTP_200_OK, \
+        f"Failed to create ECG for user 1: {response_user1_get.content}"
+    assert response_user2_get.status_code == status.HTTP_403_FORBIDDEN, \
+        f"Unexpected status code: {response_user2_get.status_code}. User 2 should not have permission to access ECG created by user 1"
+    assert 'zerocrossings' in response_user1_get.json(), \
+        f"Expected 'zerocrossings' field in the response JSON, but it's not present."
 
 
 def test_get_ecg_not_found():
