@@ -18,7 +18,7 @@ Create and enable a virtualenv and install the dependencies with
 cd ~/
 python -m venv venv
 source ~/venv/bin/activate
-pip install uvicorn fastapi python-multipart asyncpg databases psycopg2 asyncpg sqlalchemy passlib jose pytest ptw alembic
+pip install -r requirements.txt
 ```
 
 Start the database
