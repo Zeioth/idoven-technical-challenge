@@ -70,6 +70,7 @@ docker exec -it <instance-id> psql -U apiuser -d idovendb
   * controller
     - /db.py
     - /users.py
+    - /ecgs.py
 * tests
   - /test_ecgs_endpoints.py
   - /test_users_endpoints.py
