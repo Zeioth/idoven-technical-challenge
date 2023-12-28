@@ -1,4 +1,4 @@
-# Pydantic schemas for FastAPI
+# Pydantic schemas
 
 from pydantic import BaseModel
 from typing import List, Optional
@@ -15,6 +15,13 @@ class ECGModel(BaseModel):
     id: Optional[str] = None
     date: str
     leads: List[LeadModel]
+
+    class Config:
+        from_attributes = True
+
+
+class ECGZeroCrossingsModel(ECGModel):
+    zerocrossings: int
 
     class Config:
         from_attributes = True

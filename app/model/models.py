@@ -1,4 +1,4 @@
-# SQLAlchemy models for DB
+# SQLAlchemy models
 
 import uuid
 from sqlalchemy import Column, String, Integer, ForeignKey

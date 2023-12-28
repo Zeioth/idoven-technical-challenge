@@ -1,5 +1,6 @@
-from config import BASE_URL
+from config import config as c
 import requests
+from fastapi import status
 
 
 def test_login():
@@ -13,14 +14,14 @@ def test_login():
 
     # ACT - Get token
     response = requests.post(
-        f"{BASE_URL}/login",
+        f"{c.BASE_URL}/login",
         headers={"accept": "application/json",
                  "Content-Type": "application/x-www-form-urlencoded"},
         data={"username": "user", "password": "user"}
     )
 
     # ASSERT
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
     assert "access_token" in response.json()
 
 
@@ -40,7 +41,7 @@ def test_create_user():
 
     # ACT - Login as admin and get the access token
     login_response = requests.post(
-        f"{BASE_URL}/login",
+        f"{c.BASE_URL}/login",
         headers={"accept": "application/json",
                  "Content-Type": "application/x-www-form-urlencoded"},
         data={"username": "admin", "password": "admin"}
@@ -49,14 +50,14 @@ def test_create_user():
 
     # Delete the user if it already exists
     delete_user_response = requests.post(
-        f"{BASE_URL}/delete-user/newuser",
+        f"{c.BASE_URL}/delete-user/newuser",
         headers={"accept": "application/json",
                  "Authorization": f"Bearer {access_token}"}
     )
 
     # ACT - Create a new user using the obtained access token
     new_user_response = requests.post(
-        f"{BASE_URL}/create-user",
+        f"{c.BASE_URL}/create-user",
         headers={
             "accept": "application/json", "Content-Type": "application/json",
             "Authorization": f"Bearer {access_token}"},
@@ -64,6 +65,7 @@ def test_create_user():
     )
 
     # ASSERT
-    assert login_response.status_code == 200
-    assert delete_user_response.status_code in (200, 404)
-    assert new_user_response.status_code == 200
+    assert login_response.status_code == status.HTTP_200_OK
+    assert delete_user_response.status_code in (status.HTTP_200_OK,
+                                                status.HTTP_404_NOT_FOUND)
+    assert new_user_response.status_code == status.HTTP_200_OK

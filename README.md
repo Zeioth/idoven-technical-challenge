@@ -61,13 +61,13 @@ docker exec -it <instance-id> psql -U apiuser -d idovendb
 
 ```
 * app
-  * endpoints
-    - /ecgs.py
-    - /users.py
   * models
     - /schemas.py
     - /models.py
-  * utils
+  * view
+    - /ecgs.py
+    - /users.py
+  * controller
     - /db.py
     - /users.py
 * tests
