@@ -2,6 +2,7 @@
 
 import os
 APP_ENV = os.getenv("APP_ENV")
+IS_PRODUCTION = APP_ENV and APP_ENV.lower() == "production"
 
 
 class Config:
@@ -13,9 +14,7 @@ class Config:
             cls._instance._initialize()
         return cls._instance
 
-    def _initialize(self):
-        IS_PRODUCTION = APP_ENV and APP_ENV.lower() == "production"
-
+    def _initialize(self):        
         # CONFIG
         # ---------------------------------------------------------------------
         Config.HASH_ALGORITHM = "HS256"
