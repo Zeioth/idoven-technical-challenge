@@ -61,7 +61,7 @@ docker exec -it <instance-id> psql -U apiuser -d idovendb
 
 ```
 * app
-  * models
+  * model
     - /schemas.py
     - /models.py
   * view
